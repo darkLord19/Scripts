@@ -1,0 +1,4 @@
+#!/bin/bash
+
+synclient VertScrollDelta=-100
+synclient HorizontalScrollsDelta=-100

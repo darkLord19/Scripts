@@ -1,0 +1,20 @@
+#!/bin/bash
+
+sudo pacman -S debootstrap
+
+
+sudo mkdir $1
+sudo debootstrap --arch $2 $3 $MY_CHROOT http://deb.debian.org/debian/
+
+echo "proc $1/proc proc defaults 0 0" >> /etc/fstab
+sudo mount proc $1/proc -t proc
+echo "sysfs $1/sys sysfs defaults 0 0" >> /etc/fstab
+sudo mount sysfs $1/sys -t sysfs
+sudo cp /etc/hosts $1/etc/hosts
+sudo cp /proc/mounts $1/etc/mtab
+
+#Define a login tty that will use this chroot
+
+echo "8:23:respawn:/usr/sbin/chroot $1 " \
+        "/sbin/getty 38400 tty8"  >> /etc/inittab
+sudo init q
