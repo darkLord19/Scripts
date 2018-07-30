@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $1 = "int" ]; then
+	sudo wpa_supplicant -B -i wlo1 -c /etc/wpa_supplicant/Hostel.conf
+	sudo dhcpcd wlo1
+elif [ $1 = "ext" ]; then
+	sudo wpa_supplicant -B -i wlxc83a35c6ea37 -c /etc/wpa_supplicant/Hostel.conf
+	sudo dhcpcd wlan0
+fi
