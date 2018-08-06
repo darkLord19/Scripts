@@ -1,0 +1,18 @@
+#! /bin/sh
+# Author: Umang Parmar
+# Dependencies: nitrogen(if you are not using xfce4)
+
+directory="$HOME/"".local/share/wallpaper"
+
+mkdir -p "$directory"
+
+wget -O "$directory""/tmp2.jpg" https://source.unsplash.com/1920x1080
+
+mv "$directory""/tmp2.jpg" "$directory""/tmp.jpg"
+
+img_location="$directory""/tmp.jpg"
+
+# Uncomment below line to use with nitrogen
+# nitrogen --set-auto "$img_location"
+
+xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitor0/workspace0/last-image --set "$img_location"
