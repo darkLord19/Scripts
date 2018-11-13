@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Usage cylogin username password
+curl -k -d mode=191 -d username="$1" -d password="$2" https://10.100.56.55:8090/login.xml
