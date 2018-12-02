@@ -1,0 +1,16 @@
+#!/usr/bin/zsh
+#
+#
+
+state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep "state" | cut -d" " -f20)
+percentage=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep "percentage" | cut -d" " -f15-)
+
+if [ "${state}" = "fully-charged" ];then
+   echo "──────────────────- < battery charged >"
+elif [ "${state}" = "discharging" ];then
+   echo "────────────────- < discharging: "${percentage}" >"
+elif [ "${state}" = "charging" ];then
+   echo "────────────────────- < charging: "${percentage}" >"
+else
+   echo "< Unknown State >"
+fi

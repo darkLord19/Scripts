@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+#
+#
+
+if [[ `nmcli -t device show wlp0s20u2 | grep "GENERAL.STATE"` == *"(connected)"* ]] || [[ `nmcli -t
+   device show wlp0s20u2 | grep "GENERAL.STATE"` == *"(connected)"* ]];then
+   if [[ `nmcli -t device show wlp0s20u2 | grep "GENERAL.STATE"` == *"(connected)"* ]];then
+      echo "< wifi connected:" `nmcli -t device show wlp0s20u2 | grep "GENERAL.CONNECTION" | cut -d":" -f2-` ">"
+   elif [[ `nmcli -t device show enp8s0 | grep "GENERAL.STATE"` == *"(connected)"* ]];then
+      echo "───────- < Cable connected:" `nmcli -t device show enp8s0 | grep "GENERAL.CONNECTION" | cut -d":" -f2-` ">"
+   fi
+else
+   echo "< not connected >"
+fi
